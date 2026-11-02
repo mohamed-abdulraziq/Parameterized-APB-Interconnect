@@ -28,5 +28,3 @@ The supplied report states that all user-specified timing constraints are met.
 The 100 MHz figure is the implementation target. Positive WNS/WHS/WPWS and zero corresponding total negative slack indicate that the timing summary reported no failing setup, hold, or pulse-width endpoints for that implementation.
 
 These values are report evidence, not a measurement of board-level throughput or a statement about another device or constraint set.
-
-The original Vivado utilization report, XDC constraints, project TCL, and raw screenshot files were not part of the source files available for this repository preparation. Consequently, this repository does not publish LUT, FF, BRAM, or DSP utilization figures, nor does it claim a fully reproducible Vivado project run.
