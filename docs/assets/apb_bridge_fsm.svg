@@ -1,40 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520" role="img" aria-labelledby="title desc">
-<title id="title">APB Bridge FSM</title>
-<desc id="desc">IDLE waits for valid transfer, SETUP asserts PSELx with PENABLE low, ACCESS asserts PENABLE and waits for selected PREADY.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700" role="img" aria-labelledby="title desc">
+<title id="title">APB Bridge State Machine</title>
+<desc id="desc">Three-state APB bridge FSM. IDLE transitions to SETUP on a valid request. SETUP always transitions to ACCESS. ACCESS waits until the selected slave is ready, then either starts the next SETUP phase if another request is valid or returns to IDLE.</desc>
 <defs>
-  <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#101a2b"/><stop offset="1" stop-color="#172943"/></linearGradient>
+  <linearGradient id="background" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#101a2b"/>
+    <stop offset="1" stop-color="#1c2d47"/>
+  </linearGradient>
   <style>
-    .state{fill:#203653;stroke:#7ea8d4;stroke-width:2;rx:18}
-    .h{font:700 25px Arial,sans-serif;fill:#f5f8ff}
-    .t{font:15px Arial,sans-serif;fill:#d4e2f4}
-    .label{font:600 15px Arial,sans-serif;fill:#91c4ff}
-    .arrow{fill:none;stroke:#79baff;stroke-width:3}
+    .state { fill:#263c5c; stroke:#8db3df; stroke-width:3; }
+    .state-title { font:700 34px Arial, sans-serif; fill:#f5f8ff; }
+    .state-line { font:22px Arial, sans-serif; fill:#dce8f7; }
+    .heading { font:700 34px Arial, sans-serif; fill:#f5f8ff; }
+    .condition { font:600 21px Arial, sans-serif; fill:#a9d0ff; }
+    .note { font:20px Arial, sans-serif; fill:#dce8f7; }
+    .arrow { fill:none; stroke:#83baff; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+    .accent { fill:#83baff; }
   </style>
-  <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="#79baff"/></marker>
+  <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+    <path d="M0 0 L9 4 L0 8 Z" fill="#83baff"/>
+  </marker>
 </defs>
-<rect width="1100" height="520" fill="url(#bg)"/>
-<text x="50" y="58" class="h">APB Bridge State Machine</text>
-<rect x="70" y="185" width="250" height="150" class="state"/>
-<text x="195" y="230" text-anchor="middle" class="h">IDLE</text>
-<text x="195" y="270" text-anchor="middle" class="t">PSELx = 0</text>
-<text x="195" y="296" text-anchor="middle" class="t">PENABLE = 0</text>
-<rect x="425" y="185" width="250" height="150" class="state"/>
-<text x="550" y="230" text-anchor="middle" class="h">SETUP</text>
-<text x="550" y="270" text-anchor="middle" class="t">PSELx = selected slave</text>
-<text x="550" y="296" text-anchor="middle" class="t">PENABLE = 0</text>
-<rect x="780" y="185" width="250" height="150" class="state"/>
-<text x="905" y="230" text-anchor="middle" class="h">ACCESS</text>
-<text x="905" y="270" text-anchor="middle" class="t">PSELx = selected slave</text>
-<text x="905" y="296" text-anchor="middle" class="t">PENABLE = 1</text>
-<path d="M320 260H425" class="arrow" marker-end="url(#arr)"/>
-<text x="372" y="240" text-anchor="middle" class="label">vld_trnsfr</text>
-<path d="M675 260H780" class="arrow" marker-end="url(#arr)"/>
-<text x="727" y="240" text-anchor="middle" class="label">Next cycle</text>
-<path d="M905 335V425H195V335" class="arrow" marker-end="url(#arr)"/>
-<text x="550" y="410" text-anchor="middle" class="label">selected_ready &amp;&amp; !vld_trnsfr</text>
-<path d="M905 185V105H550V185" class="arrow" marker-end="url(#arr)"/>
-<text x="730" y="92" text-anchor="middle" class="label">selected_ready &amp;&amp; vld_trnsfr</text>
-<path d="M1030 260H1060V375H905V335" class="arrow" marker-end="url(#arr)"/>
-<text x="1055" y="246" text-anchor="end" class="label">!selected_ready</text>
-<text x="50" y="485" class="t">selected_ready = |(PREADY &amp; PSELx). ACCESS waits until a selected slave responds.</text>
+
+<rect width="1600" height="700" fill="url(#background)"/>
+<rect x="2" y="2" width="1596" height="696" fill="none" stroke="#788ba5" stroke-width="2"/>
+<text x="65" y="70" class="heading">APB Bridge State Machine</text>
+
+<!-- State boxes -->
+<rect x="80" y="250" width="250" height="180" rx="24" class="state"/>
+<text x="205" y="310" text-anchor="middle" class="state-title">IDLE</text>
+<text x="205" y="360" text-anchor="middle" class="state-line">PSELx = 0</text>
+<text x="205" y="395" text-anchor="middle" class="state-line">PENABLE = 0</text>
+
+<rect x="480" y="250" width="250" height="180" rx="24" class="state"/>
+<text x="605" y="310" text-anchor="middle" class="state-title">SETUP</text>
+<text x="605" y="360" text-anchor="middle" class="state-line">PSELx = selected slave</text>
+<text x="605" y="395" text-anchor="middle" class="state-line">PENABLE = 0</text>
+
+<rect x="880" y="250" width="250" height="180" rx="24" class="state"/>
+<text x="1005" y="310" text-anchor="middle" class="state-title">ACCESS</text>
+<text x="1005" y="360" text-anchor="middle" class="state-line">PSELx = selected slave</text>
+<text x="1005" y="395" text-anchor="middle" class="state-line">PENABLE = 1</text>
+
+<!-- IDLE -> SETUP -->
+<path d="M330 340 H480" class="arrow" marker-end="url(#arrowHead)"/>
+<text x="405" y="310" text-anchor="middle" class="condition">vld_trnsfr</text>
+
+<!-- SETUP -> ACCESS -->
+<path d="M730 340 H880" class="arrow" marker-end="url(#arrowHead)"/>
+<text x="805" y="310" text-anchor="middle" class="condition">Next cycle</text>
+
+<!-- ACCESS -> SETUP: successful current access and next valid request -->
+<path d="M1005 250 V135 H605 V250" class="arrow" marker-end="url(#arrowHead)"/>
+<text x="805" y="105" text-anchor="middle" class="condition">selected_ready AND vld_trnsfr</text>
+
+<!-- ACCESS -> IDLE: successful current access and no next request -->
+<path d="M1005 430 V570 H205 V430" class="arrow" marker-end="url(#arrowHead)"/>
+<text x="605" y="545" text-anchor="middle" class="condition">selected_ready AND NOT vld_trnsfr</text>
+
+<!-- ACCESS self-loop: wait for the selected slave -->
+<path d="M1130 295 H1300 V385 H1130" class="arrow" marker-end="url(#arrowHead)"/>
+<text x="1320" y="345" class="condition">NOT</text>
+<text x="1320" y="375" class="condition">selected_ready</text>
+
+<!-- Definition -->
+<text x="65" y="645" class="note">selected_ready = |(PREADY &amp; PSELx)</text>
+<text x="65" y="675" class="note">ACCESS holds until a selected slave asserts PREADY. A valid next request is pipelined into SETUP.</text>
 </svg>
