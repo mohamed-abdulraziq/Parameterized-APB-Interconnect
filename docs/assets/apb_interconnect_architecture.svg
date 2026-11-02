@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="650" viewBox="0 0 1400 650" role="img" aria-labelledby="title desc">
+<title id="title">Parameterized APB Interconnect Architecture</title>
+<desc id="desc">Request interface drives a centralized APB bridge and shared APB signals to generated RAM slave endpoints. Selected responses return through the bridge.</desc>
+<defs>
+  <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#101a2b"/><stop offset="1" stop-color="#172943"/></linearGradient>
+  <style>
+    .panel{fill:#203653;stroke:#6f91b8;stroke-width:2;rx:18}
+    .node{fill:#294a6d;stroke:#8fb7e5;stroke-width:1.5;rx:12}
+    .title{font:700 25px Arial,sans-serif;fill:#f5f8ff}
+    .head{font:700 19px Arial,sans-serif;fill:#f5f8ff}
+    .txt{font:15px Arial,sans-serif;fill:#d4e2f4}
+    .small{font:13px Arial,sans-serif;fill:#a9c6e7}
+    .req{stroke:#79baff;stroke-width:4;fill:none}
+    .resp{stroke:#66dfb6;stroke-width:4;fill:none}
+  </style>
+  <marker id="blueArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="#79baff"/></marker>
+  <marker id="greenArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="#66dfb6"/></marker>
+</defs>
+<rect width="1400" height="650" fill="url(#bg)"/>
+<text x="55" y="55" class="title">Parameterized Multi-Slave APB Interconnect</text>
+<text x="55" y="83" class="small">Single request source · Central bridge FSM · Generate-based RAM slave bank</text>
+
+<rect x="55" y="190" width="250" height="250" class="panel"/>
+<text x="85" y="230" class="head">Request Interface</text>
+<text x="85" y="270" class="txt">add_in · data_in</text>
+<text x="85" y="300" class="txt">selx_in[SLV_NUM-1:0]</text>
+<text x="85" y="330" class="txt">write1_read0 · strb_in</text>
+<text x="85" y="360" class="txt">prot_in · vld_trnsfr</text>
+<text x="85" y="405" class="small">Slave selection supplied by requester</text>
+
+<rect x="390" y="145" width="280" height="340" class="panel"/>
+<text x="425" y="190" class="head">APB Bridge</text>
+<rect x="425" y="220" width="210" height="58" class="node"/>
+<text x="530" y="255" text-anchor="middle" class="txt">IDLE → SETUP → ACCESS</text>
+<text x="425" y="325" class="txt">Request registers</text>
+<text x="425" y="358" class="txt">APB master signal generation</text>
+<text x="425" y="391" class="txt">Selected ready / error response</text>
+<text x="425" y="424" class="txt">Read data capture</text>
+
+<rect x="755" y="145" width="240" height="340" class="panel"/>
+<text x="790" y="190" class="head">Shared APB Bus</text>
+<text x="790" y="240" class="txt">PADDR · PPROT</text>
+<text x="790" y="275" class="txt">PSELx · PENABLE</text>
+<text x="790" y="310" class="txt">PWRITE · PWDATA</text>
+<text x="790" y="345" class="txt">PSTRB</text>
+<path d="M790 370H960" stroke="#54769d" stroke-width="2"/>
+<text x="790" y="410" class="small">Parallel slave response inputs</text>
+<text x="790" y="438" class="small">PREADY · PRDATA · PSLVERR</text>
+
+<rect x="1080" y="105" width="260" height="415" class="panel"/>
+<text x="1110" y="150" class="head">Generated Slave Bank</text>
+<rect x="1110" y="185" width="200" height="75" class="node"/>
+<text x="1210" y="217" text-anchor="middle" class="txt">RAM Slave 0</text>
+<text x="1210" y="240" text-anchor="middle" class="small">SELx · PROTC · DEPTH</text>
+<rect x="1110" y="290" width="200" height="75" class="node"/>
+<text x="1210" y="322" text-anchor="middle" class="txt">RAM Slave 1</text>
+<text x="1210" y="345" text-anchor="middle" class="small">SELx · PROTC · DEPTH</text>
+<text x="1210" y="410" text-anchor="middle" class="title">⋮</text>
+<rect x="1110" y="440" width="200" height="55" class="node"/>
+<text x="1210" y="473" text-anchor="middle" class="txt">RAM Slave N−1</text>
+
+<path d="M305 315H390" class="req" marker-end="url(#blueArrow)"/>
+<path d="M670 315H755" class="req" marker-end="url(#blueArrow)"/>
+<path d="M995 260H1080" class="req" marker-end="url(#blueArrow)"/>
+<path d="M1080 465H995" class="resp" marker-end="url(#greenArrow)"/>
+<path d="M875 485V565H530V485" class="resp" marker-end="url(#greenArrow)"/>
+<path d="M530 565H180V440" class="resp" marker-end="url(#greenArrow)"/>
+<text x="700" y="602" text-anchor="middle" class="small">Master response: PREADY_out · PRDATA_out · PSLVERR_out</text>
+<text x="55" y="635" class="small">Single-master scope · One selected slave per transfer · No address decoder or multi-master arbitration</text>
+</svg>
