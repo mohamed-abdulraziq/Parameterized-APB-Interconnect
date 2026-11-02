@@ -31,9 +31,9 @@
 <path d="M675 260H780" class="arrow" marker-end="url(#arr)"/>
 <text x="727" y="240" text-anchor="middle" class="label">Next cycle</text>
 <path d="M905 335V425H195V335" class="arrow" marker-end="url(#arr)"/>
-<text x="550" y="410" text-anchor="middle" class="label">selected_ready && !vld_trnsfr</text>
+<text x="550" y="410" text-anchor="middle" class="label">selected_ready &amp;&amp; !vld_trnsfr</text>
 <path d="M905 185V105H550V185" class="arrow" marker-end="url(#arr)"/>
-<text x="730" y="92" text-anchor="middle" class="label">selected_ready && vld_trnsfr</text>
+<text x="730" y="92" text-anchor="middle" class="label">selected_ready &amp;&amp; vld_trnsfr</text>
 <path d="M1030 260H1060V375H905V335" class="arrow" marker-end="url(#arr)"/>
 <text x="1055" y="246" text-anchor="end" class="label">!selected_ready</text>
 <text x="50" y="485" class="t">selected_ready = |(PREADY &amp; PSELx). ACCESS waits until a selected slave responds.</text>
