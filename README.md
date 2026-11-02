@@ -131,7 +131,7 @@ The project was synthesized and implemented in Vivado, including placement and r
 
 The summary states that all user-specified timing constraints are met. The 100 MHz value is the implementation target; the positive WNS is the reported timing margin against that constraint. These are Vivado report results, not a measured board-throughput result.
 
-The original Vivado utilization report, XDC constraints, and project TCL were not available in the files used to prepare this repository. For that reason, no LUT/FF/BRAM utilization numbers or reproducible Vivado command sequence are claimed here. See [Vivado Results and Evidence](docs/vivado_results.md).
+The original Vivado utilization report, XDC constraints, and project TCL were not available in this repository. See [Vivado Results and Evidence](docs/vivado_results.md).
 
 ## Repository layout
 
@@ -165,4 +165,4 @@ This repository documents the current single-master, parameterized multi-slave A
 
 ## Collaboration and development approach
 
-The project was developed in collaboration with Mohamed Khaled. The author defined and implemented the RTL architecture and functional design. AI assistance was limited to post-implementation formatting/comment refinement and syntax-level testbench polishing based on the author's verification plan.
+The project was developed in collaboration with Mohamed Khaled. We have defined and implemented the RTL architecture and functional design. AI assistance was limited to post-implementation formatting/comment refinement and syntax-level testbench polishing based on the author's verification plan.
