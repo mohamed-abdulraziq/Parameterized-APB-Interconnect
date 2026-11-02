@@ -11,7 +11,3 @@ AI assistance on the RTL was limited to formatting and comment refinement after 
 ## Collaboration
 
 The project was developed in collaboration with [Mohamed Khaled](https://www.linkedin.com/in/mohamed-khaled-77b685317/).
-
-## Source preservation
-
-The three RTL modules are included without functional logic changes. The active testbench module is included in `tb/apb_top_testbench.sv`. The original local testbench file also contained a second, older testbench draft fully commented out after the active `endmodule`; that inactive commented reference block is not repeated in this repository copy. The active testbench logic and scenarios are retained.
