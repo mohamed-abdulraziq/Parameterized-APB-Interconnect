@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520" role="img" aria-labelledby="title desc">
+<title id="title">APB Bridge FSM</title>
+<desc id="desc">IDLE waits for valid transfer, SETUP asserts PSELx with PENABLE low, ACCESS asserts PENABLE and waits for selected PREADY.</desc>
+<defs>
+  <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#101a2b"/><stop offset="1" stop-color="#172943"/></linearGradient>
+  <style>
+    .state{fill:#203653;stroke:#7ea8d4;stroke-width:2;rx:18}
+    .h{font:700 25px Arial,sans-serif;fill:#f5f8ff}
+    .t{font:15px Arial,sans-serif;fill:#d4e2f4}
+    .label{font:600 15px Arial,sans-serif;fill:#91c4ff}
+    .arrow{fill:none;stroke:#79baff;stroke-width:3}
+  </style>
+  <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L8 3L0 6Z" fill="#79baff"/></marker>
+</defs>
+<rect width="1100" height="520" fill="url(#bg)"/>
+<text x="50" y="58" class="h">APB Bridge State Machine</text>
+<rect x="70" y="185" width="250" height="150" class="state"/>
+<text x="195" y="230" text-anchor="middle" class="h">IDLE</text>
+<text x="195" y="270" text-anchor="middle" class="t">PSELx = 0</text>
+<text x="195" y="296" text-anchor="middle" class="t">PENABLE = 0</text>
+<rect x="425" y="185" width="250" height="150" class="state"/>
+<text x="550" y="230" text-anchor="middle" class="h">SETUP</text>
+<text x="550" y="270" text-anchor="middle" class="t">PSELx = selected slave</text>
+<text x="550" y="296" text-anchor="middle" class="t">PENABLE = 0</text>
+<rect x="780" y="185" width="250" height="150" class="state"/>
+<text x="905" y="230" text-anchor="middle" class="h">ACCESS</text>
+<text x="905" y="270" text-anchor="middle" class="t">PSELx = selected slave</text>
+<text x="905" y="296" text-anchor="middle" class="t">PENABLE = 1</text>
+<path d="M320 260H425" class="arrow" marker-end="url(#arr)"/>
+<text x="372" y="240" text-anchor="middle" class="label">vld_trnsfr</text>
+<path d="M675 260H780" class="arrow" marker-end="url(#arr)"/>
+<text x="727" y="240" text-anchor="middle" class="label">Next cycle</text>
+<path d="M905 335V425H195V335" class="arrow" marker-end="url(#arr)"/>
+<text x="550" y="410" text-anchor="middle" class="label">selected_ready && !vld_trnsfr</text>
+<path d="M905 185V105H550V185" class="arrow" marker-end="url(#arr)"/>
+<text x="730" y="92" text-anchor="middle" class="label">selected_ready && vld_trnsfr</text>
+<path d="M1030 260H1060V375H905V335" class="arrow" marker-end="url(#arr)"/>
+<text x="1055" y="246" text-anchor="end" class="label">!selected_ready</text>
+<text x="50" y="485" class="t">selected_ready = |(PREADY &amp; PSELx). ACCESS waits until a selected slave responds.</text>
+</svg>
