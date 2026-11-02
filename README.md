@@ -48,9 +48,9 @@ See [Architecture and Protocol](docs/architecture.md) for the detailed block res
 
 Each slave instance is configured with:
 
-- `SELx` — its `PSELx` encoding.
-- `PROTC` — the protection value accepted by that slave.
-- `DEPTH` — number of addressable words in its local memory.
+- `SELx` - its `PSELx` encoding.
+- `PROTC` - the protection value accepted by that slave.
+- `DEPTH` - number of addressable words in its local memory.
 
 The RAM module defaults to a depth of 32 words. The top-level module passes the common data/address/strobe parameters and the per-slave configuration array values into each generated slave.
 
