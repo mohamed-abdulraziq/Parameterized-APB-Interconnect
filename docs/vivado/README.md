@@ -1,0 +1,1 @@
+The original Vivado screenshot files, utilization report, XDC constraints, and project TCL were not available in the source bundle used to prepare this repository. The timing values available from the supplied Design Timing Summary are transcribed in [vivado_results.md](../vivado_results.md). Add the original screenshots and source project files here when available.
