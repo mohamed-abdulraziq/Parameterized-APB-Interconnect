@@ -28,10 +28,10 @@ Developed in collaboration with [Mohamed Khaled](https://www.linkedin.com/in/moh
 
 The design is organized into four functional parts:
 
-1. **Request interface** — accepts the address, write data, selected-slave vector, transfer direction, byte strobes, protection attribute, and request-valid indication.
-2. **APB bridge** — captures a request and sequences the APB `SETUP` and `ACCESS` phases. It drives the shared APB address, protection, select, enable, write, data, and strobe signals.
-3. **Slave bank** — instantiates `SLV_NUM` APB RAM endpoints. Each endpoint has its own select ID, expected protection value, and memory depth.
-4. **Response path** — combines the selected slaves' ready/error responses and captures read data from the responding selected slave.
+1. **Request interface** - accepts the address, write data, selected-slave vector, transfer direction, byte strobes, protection attribute, and request-valid indication.
+2. **APB bridge** - captures a request and sequences the APB `SETUP` and `ACCESS` phases. It drives the shared APB address, protection, select, enable, write, data, and strobe signals.
+3. **Slave bank** - instantiates `SLV_NUM` APB RAM endpoints. Each endpoint has its own select ID, expected protection value, and memory depth.
+4. **Response path** - combines the selected slaves' ready/error responses and captures read data from the responding selected slave.
 
 The request interface supplies `selx_in`; the bridge distributes this selection to `PSELx`. The current RTL therefore expects the requester to present a valid one-hot slave selection for a single-slave transfer. It is a single-master bridge; multi-master arbitration and address-to-slave decoding are outside the current design boundary.
 
