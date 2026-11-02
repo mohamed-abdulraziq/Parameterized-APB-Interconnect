@@ -1,0 +1,26 @@
+# Vivado generated data
+*.jou
+*.log
+*.str
+*.wdb
+*.vcd
+*.wcfg
+*.pb
+*.dcp
+*.bit
+*.bin
+*.ltx
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+.Xil/
+
+# Simulation generated data
+work/
+transcript
+vsim.wlf
+modelsim.ini
+*.vvp
+obj_dir/
